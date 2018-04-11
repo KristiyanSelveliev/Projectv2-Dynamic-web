@@ -86,13 +86,13 @@ public class UserDAO implements IUserDAO {
 		
 	}
 	
-	void returnLoginStatus(PojoUser user) {
+	void returnLoginStatus(UserPojo user) {
 		String sql = "SELECT login_status FROM users WHERE username = "+user.getUsername()+"";
-		try (PreparedStatement pStatement = connection.prepareStatement(sql);){
+		/*try (PreparedStatement pStatement = connection.prepareStatement(sql);){
 			ResultSet result = pStatement.executeQuery();
 			
 			//TODO ....
-		}
+		}*/
 	}
 	
 	
