@@ -98,10 +98,14 @@ public class UserManager {
 		return false;
 	}
 	
-	public void logout(String username, String password)  {
+	public void logout(UserPojo user)  {
 		try {
-			UserDAO.getInstance().logout(username, password);
-		} catch (SQLException e) {
+			if(user.isLoginStatus()) {
+				UserDAO.getInstance().logout(user.getUsername(), user.getPassword());
+				return;
+			}
+			throw new LoginException("Please log in");
+		} catch (Exception e) {
 			System.out.println("Invalid operation" + e.getMessage());
 		}	
 		
