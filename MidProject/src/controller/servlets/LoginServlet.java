@@ -29,6 +29,8 @@ public class LoginServlet extends HttpServlet {
 	     String username=request.getParameter("uname");
 	     
 	     String password=request.getParameter("psw");
+	     System.out.println(username);
+	     System.out.println(password);
 	     
 	     
 	     if(UserManager.getInstance().login(username, password)) {

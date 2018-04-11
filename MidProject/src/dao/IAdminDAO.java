@@ -10,7 +10,7 @@ public interface IAdminDAO {
 	 
 	 void updateProductAdmin(Product product) throws Exception;
 	 
-	 void createProductAdmin(Product product) throws Exception;
+	 void createProductAdmin(Product product,int quantity) throws Exception;
 	 
 
 }

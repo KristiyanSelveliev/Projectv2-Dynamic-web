@@ -39,5 +39,32 @@ public class AdminManager {
 	
 	
 	
+	
+	public boolean updateProduct(Product product,String description) {
+		product.setDescription(description);
+		try {
+			AdminDAO.getInstance().updateProductAdmin(product);
+			return true;
+		} catch (Exception e) {
+			System.out.println("Srry cant update");
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public  boolean createProduct(Product product,int quantity) {
+		try {
+			AdminDAO.getInstance().createProductAdmin(product, quantity);
+			return true;
+		}catch(Exception e) {
+			System.out.println("Srry cant create");
+			
+		}
+		return false;
+	}
+	
+	
+	
+	
 
 }
