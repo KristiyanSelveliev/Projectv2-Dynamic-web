@@ -38,7 +38,11 @@ public class AdminDAO implements IAdminDAO{
 
 	@Override
 	public void removeProduct(Product product) throws Exception {
-		// TODO Auto-generated method stub
+		try(PreparedStatement ps=connection.prepareStatement("DELETE FROM products WHERE model=? AND description=? ");){
+			ps.setString(1, product.getModel());
+			ps.setString(2, product.getDescription());
+			ps.executeUpdate();
+		}
 		
 	}
 
@@ -47,6 +51,7 @@ public class AdminDAO implements IAdminDAO{
 		try(PreparedStatement ps=connection.prepareStatement("UPDATE products SET description=? where model=?");){
 			ps.setString(1, product.getDescription());
 			ps.setString(2, product.getModel());
+			ps.executeUpdate();
 		}
 		
 	}
@@ -60,6 +65,7 @@ public class AdminDAO implements IAdminDAO{
 		   pStatement.setDouble(3, product.getPrice());
 		   pStatement.setString(4, product.getType().toString());
 		   pStatement.setInt(5, quantity);
+		   pStatement.executeUpdate();
 		  }
 	}
 	
