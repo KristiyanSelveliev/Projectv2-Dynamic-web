@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 	     }*/
 	    request.getRequestDispatcher("InvalidLogin.html").forward(request,response); 
 	     
-		 response.getWriter().println("EVALA BATKO");
+		
 	}
 
 }
