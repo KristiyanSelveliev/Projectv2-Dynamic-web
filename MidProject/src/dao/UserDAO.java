@@ -86,6 +86,15 @@ public class UserDAO implements IUserDAO {
 		
 	}
 	
+	void returnLoginStatus(PojoUser user) {
+		String sql = "SELECT login_status FROM users WHERE username = "+user.getUsername()+"";
+		try (PreparedStatement pStatement = connection.prepareStatement(sql);){
+			ResultSet result = pStatement.executeQuery();
+			
+			//TODO ....
+		}
+	}
+	
 	
 	
 	@Override
@@ -93,6 +102,7 @@ public class UserDAO implements IUserDAO {
 		if (this.checkUsernameAndPass(username, password)) {
 			try(PreparedStatement pStatement = connection
 					.prepareStatement("UPDATE users SET loginStatus = " + 1 + " WHERE username = " + username + " ");){
+				//TODO setBoolean
 				pStatement.executeUpdate();
 				
 				return true;
@@ -109,6 +119,7 @@ public class UserDAO implements IUserDAO {
 	public void logout(String username, String password) throws SQLException {
 		try (PreparedStatement pStatement = connection
 				.prepareStatement("UPDATE users SET loginStatus = " + 0 + " WHERE username = " + username + " ");){
+			//TODO setBoolean
 			pStatement.executeUpdate();
 			
 		}
