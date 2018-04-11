@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
 	   /*  if(UserManager.getInstance().login(username, password)) {
 	    	 
 	     }*/
+	    request.getRequestDispatcher("InvalidLogin.html").forward(request,response); 
 	     
 		 response.getWriter().println("EVALA BATKO");
 	}
