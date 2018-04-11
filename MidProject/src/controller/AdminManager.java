@@ -43,12 +43,16 @@ public class AdminManager {
 	
 	
 	public boolean updateProduct(Product product,String description) {
+		if(product = null || Validator.validateString(description)) {
+			System.out.println("Sorry cant update. Invalid data");
+			return false;
+		}
 		product.setDescription(description);
 		try {
 			AdminDAO.getInstance().updateProductAdmin(product);
 			return true;
 		} catch (Exception e) {
-			System.out.println("Srry cant update");
+			System.out.println("Sorry cant update");
 			e.printStackTrace();
 		}
 		return false;
