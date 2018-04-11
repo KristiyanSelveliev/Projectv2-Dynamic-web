@@ -1,6 +1,7 @@
 package controller;
 
 import dao.AdminDAO;
+import model.Admin;
 import model.Product;
 import validator.Validator;
 
@@ -61,6 +62,17 @@ public class AdminManager {
 			
 		}
 		return false;
+	}
+	
+	public boolean deleteProduct(Product product) {
+		try {
+			AdminDAO.getInstance().removeProduct(product);
+			return true;
+		}catch(Exception e) {
+			System.out.println("Srry cant delete");
+		}
+		return false;
+		
 	}
 	
 	
