@@ -16,6 +16,7 @@ public class AdminManager {
 		}
 		return instance;
 		
+		
 
 	}
 
