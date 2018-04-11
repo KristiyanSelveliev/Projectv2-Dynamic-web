@@ -39,7 +39,7 @@ public class UserManager {
 		
 	}
 	
-	public void register(String name, String lastName, String username, String password, String email) {
+	public boolean register(String name, String lastName, String username, String password, String email) {
 		//Customer customer = new Customer(name, lastName, username, password, email);
 		UserPojo user=new UserPojo(name,lastName,username,password,email);
 		try {			
@@ -48,9 +48,10 @@ public class UserManager {
 					Validator.validateString(lastName) && Validator.validEMail(email)) {
 				if(!UserDAO.getInstance().checkUsernameAndPass(username, password)) {
 					UserDAO.getInstance().addUser(user);
-					return;
+					return true;
 				}
-				throw new InvalidFormatInput("The username is already taken. Choose another username.");				
+				throw new InvalidFormatInput("The username is already taken. Choose another username.");
+			
 			}
 			else {
 				if(!Validator.validateString(name) && !Validator.validateString(lastName)) {
@@ -67,13 +68,16 @@ public class UserManager {
 							+ " at least 1 upper case letter at least 1 numeric character, without spaces ");
 				}				
 			}
+		
 			
 		}catch (Exception e) {
 			System.out.println("Sorry! Unsuccessful registration." + e.getMessage());
+			
 		}
+		return false;
 	}
 	
-	public void login(String username, String password) {
+	public boolean login(String username, String password) {
 		// TODO add max_login_request
 		try {
 			if(Validator.validUsername(username) && Validator.validPassword(password)) {
@@ -82,7 +86,7 @@ public class UserManager {
 					users.get(username).setLastLogin(LocalDateTime.now());
 					System.out.println("Successful login");
 					UserDAO.getInstance().login(username, password);
-					return;
+					return true;
 				}
 				throw new InvalidFormatInput("Not existing user!");
 			}
@@ -91,7 +95,7 @@ public class UserManager {
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
+		return false;
 	}
 	
 	public void logout(String username, String password)  {

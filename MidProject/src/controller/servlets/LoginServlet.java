@@ -31,9 +31,9 @@ public class LoginServlet extends HttpServlet {
 	     String password=request.getParameter("psw");
 	     
 	     
-	   /*  if(UserManager.getInstance().login(username, password)) {
-	    	 
-	     }*/
+	     if(UserManager.getInstance().login(username, password)) {
+	    	 System.out.println("well done");
+	     }
 	    request.getRequestDispatcher("InvalidLogin.html").forward(request,response); 
 	     
 		

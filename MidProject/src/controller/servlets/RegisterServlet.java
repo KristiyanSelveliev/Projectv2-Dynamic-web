@@ -29,9 +29,9 @@ public class RegisterServlet extends HttpServlet {
 	     
 	     String password=request.getParameter("psw");
 	     
-	    /* if(UserManager.getInstance().register(firstname, lastname, username, password, email)) {
-	    	 
-	     }*/
+	     if(UserManager.getInstance().register(firstname, lastname, username, password, email)) {
+	    	 System.out.println("Well done");
+	     }
 	    
 		
 		
