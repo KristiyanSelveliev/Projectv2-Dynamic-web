@@ -111,17 +111,26 @@ public class UserManager {
 		
 	}
 	
-	public void changePassword(String username, String password) {
+	public void changePassword(UserPojo user, String password) {
 		try {
-			if (UserDAO.getInstance().checkUsernameAndPass(username, password)) {
+			if (UserDAO.getInstance().checkUsernameAndPass(user.getUsername(), password) && Validator.validatePassword(password) &&
+					user.isLoginStatus()) {
 			try {
-				UserDAO.getInstance().changePassword(username, password);
+				UserDAO.getInstance().changePassword(user.getUsername(), password);
 				return;
 			}catch (SQLException e) {
 				System.out.println("Invalid operation" + e.getMessage());
 			}
 			}
-			throw new LoginException("Not existing username or password");
+			else if(!UserDAO.getInstance().checkUsernameAndPass(user.getUsername(), password)) {
+				throw new LoginException("Not existing username or password");
+			}
+			else if(!Validator.validatePassword(password)){
+				throw new InvalidFormatInput("Invalid password format");
+			}
+			else if(user.isLoginStatus()) {
+				throw new LoginException("Please log in");
+			}
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

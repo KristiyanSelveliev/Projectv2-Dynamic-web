@@ -74,6 +74,10 @@ public class AdminManager {
 	}
 	
 	public boolean deleteProduct(Product product) {
+		if(product = null) {
+			System.out.println("invalid data");
+			return false;
+		}
 		try {
 			AdminDAO.getInstance().removeProduct(product);
 			return true;
