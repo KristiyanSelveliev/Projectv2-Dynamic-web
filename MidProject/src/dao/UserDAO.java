@@ -90,6 +90,7 @@ public class UserDAO implements IUserDAO {
 		String sql = "SELECT login_status FROM users WHERE username = "+user.getUsername()+"";
 		try (PreparedStatement pStatement = connection.prepareStatement(sql);){
 			ResultSet result = pStatement.executeQuery();
+			
 			//TODO ....
 		}
 	}
