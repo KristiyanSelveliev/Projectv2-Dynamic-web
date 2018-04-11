@@ -16,6 +16,7 @@ import model.Product;
 import model.User;
 import model.UserPojo;
 import myExceptions.InvalidFormatInput;
+import myExceptions.LoginException;
 import validator.Validator;
 
 public class UserManager {
@@ -104,9 +105,18 @@ public class UserManager {
 	
 	public void changePassword(String username, String password) {
 		try {
-			UserDAO.getInstance().changePassword(username, password);
-		}catch (SQLException e) {
-			System.out.println("Invalid operation" + e.getMessage());
+			if (UserDAO.getInstance().checkUsernameAndPass(username, password)) {
+			try {
+				UserDAO.getInstance().changePassword(username, password);
+				return;
+			}catch (SQLException e) {
+				System.out.println("Invalid operation" + e.getMessage());
+			}
+			}
+			throw new LoginException("Not existing username or password");
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	

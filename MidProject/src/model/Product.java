@@ -34,7 +34,7 @@ public class Product {
 	
 	
 	
-	public double checkRating() {
+	/*public double checkRating() {
 		double sum = 0;
 		for (Integer r : ratings) {
 			sum += r.intValue();
@@ -50,7 +50,7 @@ public class Product {
 		else {
 			System.out.println("Invalid integer");
 		}
-	}
+	}*/
 	
 	
 	public int getId() {

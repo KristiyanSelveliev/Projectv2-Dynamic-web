@@ -7,10 +7,9 @@ import java.sql.SQLException;
 import java.util.HashSet;
 
 import controller.DBManager;
-import model.Customer;
 import model.Product;
 import model.UserPojo;
-import validator.Validator;
+
 
 public class UserDAO implements IUserDAO {
 
@@ -57,11 +56,9 @@ public class UserDAO implements IUserDAO {
 				if (resultSet.getInt(1) == 1) {
 					return true;
 				
-			    }
+			    }		
 			
-			
-		}	
-		
+		     }		
 			
 		}
 		return false;
@@ -119,26 +116,21 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public void changePassword(String username, String password) throws SQLException {
-		if (this.checkUsernameAndPass(username, password)) {
-			try (PreparedStatement pStatement = connection
+	public void changePassword(String username, String password) throws SQLException {		
+		try (PreparedStatement pStatement = connection
 					.prepareStatement("UPDATE users SET password = ? WHERE username = ? ");){
 				pStatement.setString(1, password);
 				pStatement.setString(2, username);
 				pStatement.executeUpdate();
 				
-			}		
-			
-			
-		}
-
+		}	
 	}
 
 	
 
 	@Override
 	public void addProductCustomer(Product product, int quantity) throws Exception {
-		// TODO Auto-generated method stub
+		// TODO shte se mahne
 
 	}
 
@@ -167,7 +159,7 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public void removeProductCustomer(Product product) throws Exception {
-		// TODO Auto-generated method stub
+		// TODO shte se mahne
 
 	}
 
@@ -183,11 +175,12 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void addToFavorite(UserPojo user, Product product) throws SQLException {
 		String sql = "INSERT INTO user_has_favorites (user_id, product_id) VALUES (?,?);";
-		PreparedStatement s = connection.prepareStatement(sql);
-		//TODO kak da vzema user_id
-		s.setInt(2, product.getId());
-		s.executeUpdate();
-		s.close();
+		try (PreparedStatement s = connection.prepareStatement(sql);){
+			s.setInt(1, UserDAO.getInstance().returnId(user));
+			s.setInt(2, ProductDAO.getInstance().returnIdDB(product));
+			s.executeUpdate();
+			s.close();			
+		}
 
 	}
 	
@@ -209,7 +202,7 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public void finishOrder() throws Exception {
-		// TODO Auto-generated method stub
+		// TODO tozi metod trqbva da se mahne ? 
 
 	}
 

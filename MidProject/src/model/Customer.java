@@ -101,7 +101,7 @@ public class Customer extends User{
 				for (Product p : this.getMarket().getProducts().get(product.getType()).keySet()) {
 
 					if(p.equals(product)) {
-						p.addRating(rating);
+						//p.addRating(rating);
 						
 					}
 				}			
