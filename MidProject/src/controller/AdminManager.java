@@ -3,6 +3,7 @@ package controller;
 import dao.AdminDAO;
 import model.Admin;
 import model.Product;
+import myExceptions.InvalidFormatInput;
 import validator.Validator;
 
 public class AdminManager {
@@ -55,10 +56,14 @@ public class AdminManager {
 	
 	public  boolean createProduct(Product product,int quantity) {
 		try {
-			AdminDAO.getInstance().createProductAdmin(product, quantity);
-			return true;
+			if(Validator.validateString(product.getModel()) && Validator.validateString(product.getDescription()) &&
+					Validator.checkForPositiveNum(product.getPrice()) && Validator.checkForPositiveNum(quantity)) {
+				AdminDAO.getInstance().createProductAdmin(product, quantity);
+				return true;				
+			}
+			throw new InvalidFormatInput("Invalid data format.");
 		}catch(Exception e) {
-			System.out.println("Srry cant create");
+			System.out.println("Sorry cant create" + e.getMessage());
 			
 		}
 		return false;
