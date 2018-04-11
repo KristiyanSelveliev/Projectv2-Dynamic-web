@@ -102,7 +102,6 @@ public class UserDAO implements IUserDAO {
 		if (this.checkUsernameAndPass(username, password)) {
 			try(PreparedStatement pStatement = connection
 					.prepareStatement("UPDATE users SET loginStatus = " + 1 + " WHERE username = " + username + " ");){
-				//TODO setBoolean
 				pStatement.executeUpdate();
 				
 				return true;
@@ -119,7 +118,7 @@ public class UserDAO implements IUserDAO {
 	public void logout(String username, String password) throws SQLException {
 		try (PreparedStatement pStatement = connection
 				.prepareStatement("UPDATE users SET loginStatus = " + 0 + " WHERE username = " + username + " ");){
-			//TODO setBoolean
+			
 			pStatement.executeUpdate();
 			
 		}
@@ -190,7 +189,6 @@ public class UserDAO implements IUserDAO {
 			s.setInt(1, UserDAO.getInstance().returnId(user));
 			s.setInt(2, ProductDAO.getInstance().returnIdDB(product));
 			s.executeUpdate();
-			s.close();			
 		}
 
 	}
@@ -234,7 +232,6 @@ public class UserDAO implements IUserDAO {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
