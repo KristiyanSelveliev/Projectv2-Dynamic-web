@@ -82,7 +82,7 @@ public class UserManager {
 				if (Validator.validUsername(username) && Validator.validPassword(password)) {
 					if (!UserDAO.getInstance().checkUsernameAndPass(username, password)) {
 						
-						users.get(username).setLastLogin(LocalDateTime.now());
+						//users.get(username).setLastLogin(LocalDateTime.now());
 						System.out.println("Successful login");
 						
 						return true;

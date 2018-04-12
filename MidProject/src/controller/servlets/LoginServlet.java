@@ -35,9 +35,10 @@ public class LoginServlet extends HttpServlet {
 	     
 	     if(UserManager.getInstance().login(username, password)) {
 	    	 System.out.println("well done");
-	     }
+	    	 request.getRequestDispatcher("image.gif").forward(request, response);
+	     }else {
 	    request.getRequestDispatcher("InvalidLogin.html").forward(request,response); 
-	     
+	     }
 		
 	}
 
