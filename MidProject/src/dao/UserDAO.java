@@ -96,21 +96,6 @@ public class UserDAO implements IUserDAO {
 		
 	}
 	
-	public boolean returnLoginStatus(UserPojo user) {
-		String sql = "SELECT login_status FROM users WHERE username = "+user.getUsername()+"";
-		ResultSet result = null;
-		boolean status = false;
-	
-		try (PreparedStatement pStatement = connection.prepareStatement(sql);){
-			result = pStatement.executeQuery();
-			status = result.getBoolean("login_status");			
-			
-		}catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		return status;
-
-	}
 	
 	
 	
