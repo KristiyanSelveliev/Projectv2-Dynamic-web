@@ -32,7 +32,7 @@ private static Connection connection;
 		return instance;	
 	}
 	
-	public int returnIdDB(Order order) {
+	/*public int returnIdDB(Order order) {
 		String sql = "SELECT order_id FROM orders WHERE id_number = "+order.getId()+"";
 		int id = 0;
 		try (PreparedStatement pStatement = connection.prepareStatement(sql);){
@@ -44,9 +44,9 @@ private static Connection connection;
 		}
 		return id;
 		
-	}
+	}*/
 	
-	public void addOrder(Order order) throws SQLException{
+	/*public void addOrder(Order order) throws SQLException{
 		
 		String sql = "INSERT INTO orders(id_user, id_number, total_cost, date) VALUES (?,?,?)";
 		//PreparedStatement pStatement = null;
@@ -77,6 +77,6 @@ private static Connection connection;
 		
 		
 		
-	}
+	}*/
 
 }

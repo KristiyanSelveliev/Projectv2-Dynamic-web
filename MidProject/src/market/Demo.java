@@ -3,10 +3,13 @@ package market;
 import java.sql.Connection;
 import java.util.HashSet;
 
+import controller.AdminManager;
 import controller.DBManager;
+import controller.ProductManager;
 import controller.UserManager;
 import model.Product;
 import model.Product.TYPES;
+import validator.Validator;
 
 public class Demo {
 	
@@ -15,10 +18,12 @@ public class Demo {
 		
 		
 		//UserManager.getInstance().register("Pesho3","Gosho2","Peshko14","Pesheca001", "pesho3@abv.bg");
-		UserManager.getInstance().login("Peshko1","Pesheca00");
+		UserManager.getInstance().login("Peshko14","Habalqhubalq1");
 		/*Product p=new Product("tvmaika","mnogo qk",200,Product.TYPES.GSM);
-		Product p2=new Product("Samsung","mega moshten",1000,Product.TYPES.TV);
-		Product p3=new Product("Samsung2","mega moshteeen",1000,Product.TYPES.TV);*/
+		Product p2=new Product("Samsung","mega moshten",1000,Product.TYPES.TV);*/
+		Product p3=new Product("Samsung2","mega moshteeen",1000,Product.TYPES.TV);
+		//ProductManager.getInstance().addRating(p3, 4);
+		AdminManager.getInstance().updateProduct(p3, "mega zle");
 		/*try {
 			AdminDAO.getInstance().addProduct(p2, 5);
 		} catch (Exception e) {

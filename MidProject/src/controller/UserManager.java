@@ -168,7 +168,7 @@ public class UserManager {
 
 	}
 
-	void finishOrder(UserPojo user) {
+	/*void finishOrder(UserPojo user) {
 		Order order = new Order(user, user.getCart());
 		try {
 			OrderDAO.getInstance().addOrder(order);
@@ -177,6 +177,6 @@ public class UserManager {
 			System.out.println("Something went wrong. Please try again " + e.getMessage());
 		}
 
-	}
+	}*/
 
 }

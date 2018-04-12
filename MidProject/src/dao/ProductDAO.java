@@ -27,7 +27,7 @@ private static Connection connection;
 	}
 
 	public void changeRating(Product product, double rating) throws SQLException{
-		try (PreparedStatement pStatement = connection.prepareStatement("UPDATE products SET rating = ? WHERE product_model = ? ");){
+		try (PreparedStatement pStatement = connection.prepareStatement("UPDATE products SET rating = ? WHERE model = ? ");){
 			pStatement.setDouble(1, rating);
 			pStatement.setString(2, product.getModel());
 			pStatement.executeUpdate();

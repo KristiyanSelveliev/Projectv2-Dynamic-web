@@ -110,7 +110,7 @@ public class UserDAO implements IUserDAO {
 
 	
 
-	@Override
+	/*@Override
 	public void addProductCustomer(Product product, int quantity) throws Exception {
 		// TODO shte se mahne
 
@@ -133,7 +133,7 @@ public class UserDAO implements IUserDAO {
 
 	*/
 
-	@Override
+	/*@Override
 	public void removeProductCustomer(Product product) throws Exception {
 		// TODO shte se mahne
 
@@ -146,7 +146,7 @@ public class UserDAO implements IUserDAO {
 		
 		//TODO da se mahne ot tuk
 
-	}
+	}*/
 
 	@Override
 	public void addToFavorite(UserPojo user, Product product) throws SQLException {
@@ -181,11 +181,11 @@ public class UserDAO implements IUserDAO {
 	
 	
 
-	@Override
+	/*@Override
 	public void finishOrder() throws Exception {
 		// TODO tozi metod trqbva da se mahne ? 
 
-	}
+	}*/
 
 	@Override
 	public boolean isAdmin(String username) {

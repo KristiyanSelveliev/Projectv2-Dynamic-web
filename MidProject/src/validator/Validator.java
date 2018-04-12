@@ -21,6 +21,7 @@ public class Validator {
 	
 	public static boolean validateString(String text) {
 		return text != null && !text.isEmpty();
+		
 	}
 	
 	public static boolean validUsername(String username) {

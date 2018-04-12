@@ -43,7 +43,7 @@ public class AdminManager {
 	
 	
 	public boolean updateProduct(Product product,String description) {
-		if(product == null || Validator.validateString(description)) {
+		if(product == null || !Validator.validateString(description)) {
 			System.out.println("Sorry cant update. Invalid data");
 			return false;
 		}
