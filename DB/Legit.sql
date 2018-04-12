@@ -66,8 +66,7 @@ CREATE TABLE IF NOT EXISTS `Legit`.`products` (
   `rating` DECIMAL(3,2) NULL,
   `description` VARCHAR(3000) NOT NULL,
   `type` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_product`),
-  UNIQUE INDEX `type_UNIQUE` (`type` ASC))
+  PRIMARY KEY (`id_product`))
 ENGINE = InnoDB;
 
 
