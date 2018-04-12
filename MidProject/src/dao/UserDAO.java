@@ -1,9 +1,11 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.HashSet;
 
 import controller.DBManager;
@@ -32,16 +34,18 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public void addUser(UserPojo user) throws SQLException  {
 		try (PreparedStatement pStatement = connection.prepareStatement(
-				"INSERT INTO users (name, lastName, username, password, email, loginStatus) VALUES (?,?,?,?,?,?)");){
+				"INSERT INTO users (name, last_name, username, password, email,isAdmin,registrationDate) VALUES (?,?,?,?,?,?,?)");){
 			pStatement.setString(1, user.getName());
 			pStatement.setString(2, user.getLastName());
 			pStatement.setString(3, user.getUsername());
 			pStatement.setString(4, user.getPassword());
 			pStatement.setString(5, user.getEmail());
-			pStatement.setBoolean(6, true);
+			pStatement.setBoolean(6,false);
+			pStatement.setDate(7, Date.valueOf(LocalDate.now()));
 			pStatement.executeUpdate();
 			
 		}
+		
 		
 		
 		
@@ -53,15 +57,20 @@ public class UserDAO implements IUserDAO {
 			pStatement.setString(1, username);
 			pStatement.setString(2, password);
 			try (ResultSet resultSet = pStatement.executeQuery();){
-				if (resultSet.getInt(1) == 1) {
-					return true;
-				
-			    }		
+				int count=0;
+				while (resultSet.next()) {
+					count++;
+			    }	
+				if(count>0) {
+					return false;
+				}
 			
 		     }		
 			
 		}
-		return false;
+		return true;
+				
+			
 	}
 	
 	@Override

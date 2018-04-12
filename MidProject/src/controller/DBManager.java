@@ -8,11 +8,11 @@ import java.sql.Statement;
 
 public class DBManager {
 	
-	private static final String DB_PASS = "";
-	private static final String DB_USER = "";
-	private static final String DB_PORT = "";
-	private static final String DB_IP = "";
-	private static final String DB_NAME = "";
+	private static final String DB_PASS = "user1";
+	private static final String DB_USER = "User";
+	private static final String DB_PORT = "3306";
+	private static final String DB_IP = "192.168.1.4";
+	private static final String DB_NAME = "legit";
 	
 	
 	private static Connection connection;
@@ -40,8 +40,8 @@ public class DBManager {
 		System.out.println("Driver loaded");
 		
 		
-		try(Connection c=DriverManager.getConnection("jdbc:mysql://"+DB_IP+":"+DB_PORT+"/" + DB_NAME, DB_USER, DB_PASS);) {
-				
+		try {
+			connection=DriverManager.getConnection("jdbc:mysql://"+DB_IP+":"+DB_PORT+"/" + DB_NAME, DB_USER, DB_PASS);	
 			
 		} catch (SQLException e) {
 			System.out.println("Srry connection failed");
