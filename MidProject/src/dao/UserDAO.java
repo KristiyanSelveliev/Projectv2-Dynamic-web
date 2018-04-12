@@ -54,12 +54,14 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public boolean checkUsernameAndPass(String username, String password) throws SQLException { 
 		try(PreparedStatement pStatement = connection
-				.prepareStatement("SELECT COUNT(*) FROM users WHERE username = ? AND password = ?");) {
+				.prepareStatement("SELECT username FROM users WHERE username = ? AND password = ?");) {
 			pStatement.setString(1, username);
 			pStatement.setString(2, password);
 			try (ResultSet resultSet = pStatement.executeQuery();){
 				int count=0;
+				
 				while (resultSet.next()) {
+					System.out.println(resultSet.getString("username"));
 					count++;
 			    }	
 				if(count>0) {

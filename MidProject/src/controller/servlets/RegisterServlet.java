@@ -31,6 +31,10 @@ public class RegisterServlet extends HttpServlet {
 	     
 	     if(UserManager.getInstance().register(firstname, lastname, username, password, email)) {
 	    	 System.out.println("Well done");
+	    	 request.getRequestDispatcher("image.gif").forward(request, response);
+	    	 
+	     }else {
+	    	 request.getRequestDispatcher("Register.html").forward(request, response);
 	     }
 	    
 		
