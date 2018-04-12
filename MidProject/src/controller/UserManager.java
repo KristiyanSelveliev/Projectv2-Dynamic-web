@@ -102,8 +102,8 @@ public class UserManager {
 
 	public void changePassword(UserPojo user, String password) {
 		try {
-			if (UserDAO.getInstance().checkUsernameAndPass(user.getUsername(), password)
-					&& Validator.validPassword(password) && user.isLoginStatus()) {
+			if (!UserDAO.getInstance().checkUsernameAndPass(user.getUsername(), password)
+					&& Validator.validPassword(password) ) {
 				try {
 					UserDAO.getInstance().changePassword(user.getUsername(), password);
 					return;
