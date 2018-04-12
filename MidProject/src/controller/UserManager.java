@@ -113,7 +113,7 @@ public class UserManager {
 	
 	public void changePassword(UserPojo user, String password) {
 		try {
-			if (UserDAO.getInstance().checkUsernameAndPass(user.getUsername(), password) && Validator.validatePassword(password) &&
+			if (UserDAO.getInstance().checkUsernameAndPass(user.getUsername(), password) && Validator.validPassword(password) &&
 					user.isLoginStatus()) {
 			try {
 				UserDAO.getInstance().changePassword(user.getUsername(), password);
@@ -125,7 +125,7 @@ public class UserManager {
 			else if(!UserDAO.getInstance().checkUsernameAndPass(user.getUsername(), password)) {
 				throw new LoginException("Not existing username or password");
 			}
-			else if(!Validator.validatePassword(password)){
+			else if(!Validator.validPassword(password)){
 				throw new InvalidFormatInput("Invalid password format");
 			}
 			else if(user.isLoginStatus()) {
