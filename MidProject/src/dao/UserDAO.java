@@ -67,11 +67,8 @@ public class UserDAO implements IUserDAO {
 				}
 			
 		     }		
-			
 		}
-		return true;
-				
-			
+		return true;	
 	}
 	
 	@Override
@@ -97,19 +94,6 @@ public class UserDAO implements IUserDAO {
 	}
 	
 	
-	
-	
-	
-	@Override
-	public void logout(String username, String password) throws SQLException {
-		try (PreparedStatement pStatement = connection
-				.prepareStatement("UPDATE users SET loginStatus = " + 0 + " WHERE username = " + username + " ");){
-			
-			pStatement.executeUpdate();
-			
-		}
-	
-	}
 
 	@Override
 	public void changePassword(String username, String password) throws SQLException {		

@@ -18,8 +18,6 @@ public interface IUserDAO {
 	 void deleteUser(String username);
 	
 	
-	 void logout(String username, String password) throws Exception;
-	
 	 void changePassword(String username, String password) throws Exception;
 	
 	 void addProductCustomer(Product product, int quantity) throws Exception;

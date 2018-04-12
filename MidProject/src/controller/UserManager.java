@@ -98,14 +98,7 @@ public class UserManager {
 		return false;
 	}
 
-	public void logout(UserPojo user) {
-		try {
-			UserDAO.getInstance().logout(user.getUsername(), user.getPassword());
-		} catch (Exception e) {
-			System.out.println("Invalid operation" + e.getMessage());
-		}
-
-	}
+	
 
 	public void changePassword(UserPojo user, String password) {
 		try {
