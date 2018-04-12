@@ -1,133 +1,111 @@
 package model;
 
 
-
-import java.util.HashMap;
-
-import javax.naming.directory.SearchControls;
-
-import myExceptions.InvalidFormatInput;
-import validator.Validator;
-
-public class Admin extends User{
+public class Admin{
+	
+	private String name;
+	private String lastName;
+	private String username;
+	private String password;
+	private String email;
+	private int id;
+	private LocalDateTime lastLogin;
 	
 	
 
 	public Admin(String name, String lastName, String username, String password, String email) {
-		super(name, lastName, username, password, email);
+		super(name, lastName, username, password, email);	
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+	public LocalDateTime getLastLogin() {
+		return lastLogin;
+	}
+
+
+
+	public void setLastLogin(LocalDateTime lastLogin) {
+		this.lastLogin = lastLogin;
+	}
 	
-	}
-
-
-
-	@Override	
-	public void login() {		
-		super.login();		
-	}
-
-	public void search() {
-		getMarket().search(this);
-	}
-
-
-	@Override
-	public void addProduct(Product product, int quantity) {
-		if(Validator.checkForPositiveNum(quantity)) {
-			if(getMarket().getProducts().get(product.getType()).containsKey(product)) {
-				getMarket().getProducts().get(product.getType())
-				.put(product, getMarket().getProducts().get(product.getType()).get(product) + quantity);
-			
-			}
-		}
-		
-		
-	}
 	
-	public void editProductQuantity(Product product, int quantity) {	
-		if(Validator.checkForPositiveNum(quantity)) {
-			if(getMarket().getProducts().get(product.getType()).containsKey(product)) {
-				getMarket().getProducts().get(product.getType())
-				.put(product, quantity);
-			
-			}
-		}
-		
-	}
-	
-	public void editProductPrice(Product product, double price) {
-		product.setPrice(price);
-	}
-	
-	public void editProductDescription(Product product, String description) {
-		product.setDescription(description);
-	}
-	
-	
-	
-	public void createProduct(String model, String description, double price, Product.TYPES type, int quantity) {
-		try {
-		if(Validator.validateString(model) && Validator.validateString(description) &&
-				Validator.checkForPositiveNum(price) && Validator.checkForPositiveNum(quantity)) {
-			if(this.getMarket().getProducts().containsKey(type)) {
-				Product product = new Product(model, description, price, type);
-				getMarket().getProducts().get(product.getType()).put(product, quantity);
-			}
-			else {
-				Product product = new Product(model, description, price, type);
-				getMarket().getProducts().get(product.getType()).put(product, quantity);				
-			}			
-		}
-		else {
-			String cause;
-			if(!Validator.validateString(model) | !Validator.validateString(description)) {
-				cause = "Please enter a valid string";
-			}
-			else {
-				cause = "Please enter a positive number";
-			}
-			throw new InvalidFormatInput(cause);
-		}
-		}catch(InvalidFormatInput e) {
-			e.getMessage();
-		}
-		
-		
-		
-	}
-	
-	public void createProduct(Product product, int quantity) {
-		if(getMarket().getProducts().containsKey(product.getType())) {
-			getMarket().getProducts().get(product.getType()).put(product, quantity);
-		}
-		else {
-			getMarket().getProducts().put(product.getType(), new HashMap<>());
-			getMarket().getProducts().get(product.getType()).put(product, quantity);
-		}
-		
-		
-	}
-
-
-	@Override
-	public void removeProduct(Product product) {
-		if(getMarket().getProducts().get(product.getType()).containsKey(product)) {
-			getMarket().getProducts().get(product.getType()).remove(product);
-		}
-		
-	}
-
-	@Override
-	public void logout() {
-		super.logout();
-		
-	}
 
 
 
-	@Override
-	public boolean isAdmin() {
-		return true;
-	}
+	
 	
 	
 

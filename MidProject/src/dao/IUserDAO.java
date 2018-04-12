@@ -24,7 +24,7 @@ public interface IUserDAO {
 	
 	 void addProductCustomer(Product product, int quantity) throws Exception;
 	
-	 HashSet<String> searchProduct(String product) throws Exception;
+	 TreeSet<Product> searchProduct(String product) throws Exception;
 	
 	 void removeProductCustomer(Product product) throws Exception;
 	

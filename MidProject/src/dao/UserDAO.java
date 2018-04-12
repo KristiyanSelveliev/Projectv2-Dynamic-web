@@ -161,24 +161,18 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public HashSet<String> searchProduct(String product) throws SQLException {
-		HashSet<String> products = new HashSet<>();
+	public TreeSet<Product> searchProduct(String product) throws SQLException {
+		TreeSet<Product> products = new TreeSet<>((Product p1, Product p2) -> p1.getModel().compareTo(p2.getModel()));
 
 		try (PreparedStatement pStatement = connection
 				.prepareStatement("SELECT model FROM products WHERE model LIKE \'%"+product+"%\'");){
 			try (ResultSet resultSet = pStatement.executeQuery();){
 				while(resultSet.next()) {
 					products.add(resultSet.getString("model"));
-				}
-				
-			}
-			
-		}
-	
+				}				
+			}			
+		}	
 		return products;
-		
-		
-
 	}
 
 	
@@ -233,9 +227,9 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public boolean isAdmin(String username) {
-		// TODO Auto-generated method stub
+	
 		// return false;
-		PreparedStatement ps;
+		PreparedStatement ps = null;
 		try {
 			ps = connection.prepareStatement("SELECT isAdmin FROM users WHERE username=? ");
 
