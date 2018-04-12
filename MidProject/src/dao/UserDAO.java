@@ -158,15 +158,21 @@ public class UserDAO implements IUserDAO {
 	}
 	
 	public int returnId(UserPojo user) {
-		String sql = "SELECT user_id FROM users WHERE username = "+user.getUsername()+"";
-		int id = 0;
-		try (PreparedStatement pStatement = connection.prepareStatement(sql);){
-			ResultSet resultSet = pStatement.executeQuery();
-			id = resultSet.getInt("user_id");
+		
+          int id = 0;
+		
+		try (PreparedStatement ps=connection.prepareStatement("SELECT id_user FROM users WHERE username = ?");)
+				{
+			ps.setString(1, user.getUsername());
+			ResultSet rs=ps.executeQuery();
+			rs.next();
+			id=rs.getInt("id_user");
 			
-		}catch (SQLException e) {
-			System.out.println(e.getMessage());
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
 		}
+		System.out.println(id);
 		return id;
 		
 	}
@@ -183,23 +189,27 @@ public class UserDAO implements IUserDAO {
 	public boolean isAdmin(String username) {
 	
 		// return false;
-		PreparedStatement ps = null;
-		try {
-			ps = connection.prepareStatement("SELECT isAdmin FROM users WHERE username=? ");
-
-			ps.setString(1, username);
-			ResultSet rs = ps.executeQuery();
-			rs.next();
-			int isAdmin = rs.getInt("isAdmin");
-			if (isAdmin == 1) {
-				return true;
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
+	
+		try ( PreparedStatement ps = connection.prepareStatement("SELECT isAdmin FROM users WHERE username=? ");)
+		{
+		ps.setString(1, username);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int isAdmin = rs.getInt("isAdmin");
+		if (isAdmin == 1) {
+			return true;
 		}
-		return false;
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+}
+		
+		
+		
 
 	}
 
-}
+

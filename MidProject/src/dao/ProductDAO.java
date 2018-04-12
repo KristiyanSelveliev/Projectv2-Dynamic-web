@@ -27,19 +27,19 @@ private static Connection connection;
 	}
 
 	public void changeRating(Product product, double rating) throws SQLException{
-		try (PreparedStatement pStatement = connection.prepareStatement("UPDATE products SET rating = ? WHERE product_model = "+product.getModel()+" ");){
+		try (PreparedStatement pStatement = connection.prepareStatement("UPDATE products SET rating = ? WHERE product_model = ? ");){
 			pStatement.setDouble(1, rating);
+			pStatement.setString(2, product.getModel());
 			pStatement.executeUpdate();
-		}catch (Exception e) {
-			System.out.println("Invalid operation");
-		}		
+		}
 	}
 	
 	public int returnIdDB(Product product) {
-		String sql = "SELECT id_product FROM products WHERE model = "+product.getModel()+"";
 		int id = 0;
-		try (PreparedStatement pStatement = connection.prepareStatement(sql);){
+		try (PreparedStatement pStatement = connection.prepareStatement("SELECT id_product FROM products WHERE model = ? ");){
+			pStatement.setString(1, product.getModel());
 			ResultSet resultSet = pStatement.executeQuery();
+			resultSet.next();
 			id = resultSet.getInt("id_product");
 			
 		}catch (SQLException e) {
