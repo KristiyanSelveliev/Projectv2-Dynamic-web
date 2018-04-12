@@ -3,6 +3,7 @@ package dao;
 
 
 import java.util.HashSet;
+import java.util.TreeSet;
 
 import model.Product;
 import model.UserPojo;
@@ -16,7 +17,6 @@ public interface IUserDAO {
 	
 	 void deleteUser(String username);
 	
-	 boolean login(String name, String password) throws Exception;
 	
 	 void logout(String username, String password) throws Exception;
 	
@@ -24,7 +24,7 @@ public interface IUserDAO {
 	
 	 void addProductCustomer(Product product, int quantity) throws Exception;
 	
-	 TreeSet<Product> searchProduct(String product) throws Exception;
+	// TreeSet<Product> searchProduct(String product) throws Exception;
 	
 	 void removeProductCustomer(Product product) throws Exception;
 	

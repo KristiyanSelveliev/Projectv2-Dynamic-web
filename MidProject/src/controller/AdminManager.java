@@ -1,7 +1,7 @@
 package controller;
 
 import dao.AdminDAO;
-import model.Admin;
+
 import model.Product;
 import myExceptions.InvalidFormatInput;
 import validator.Validator;

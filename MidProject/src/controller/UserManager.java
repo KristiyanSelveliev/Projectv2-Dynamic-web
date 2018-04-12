@@ -4,15 +4,16 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.TreeSet;
 
 import dao.OrderDAO;
 import dao.ProductDAO;
 import dao.UserDAO;
 import market.Market;
-import model.Customer;
+
 import model.Order;
 import model.Product;
-import model.User;
+
 import model.UserPojo;
 import myExceptions.InvalidFormatInput;
 import myExceptions.LoginException;
@@ -21,7 +22,7 @@ import validator.Validator;
 public class UserManager {
 
 	private static UserManager instance;
-	private static HashMap<String, User> users = new HashMap<>();
+	private static HashMap<String, UserPojo> users = new HashMap<>();
 	ProductManager productManager = ProductManager.getInstance();
 
 	public synchronized static UserManager getInstance() {
@@ -37,20 +38,21 @@ public class UserManager {
 
 	}
 
-	public boolean register(String name, String lastName, String username, String password, String email) {
+	public synchronized boolean register(String name, String lastName, String username, String password, String email) {
 		//Customer customer = new Customer(name, lastName, username, password, email);
 		try {			
-			synchronized (UserPojo user) {
+			
 				if(Validator.validUsername(username) && Validator.validateString(name)&& Validator.validPassword(password) &&
 						Validator.validateString(lastName) && Validator.validEMail(email)) {
 					if(!UserDAO.getInstance().checkUsernameAndPass(username, password)) {
-						UserDAO.getInstance().addUser(user);
+						
 						UserPojo user=new UserPojo(name,lastName,username,password,email);
+						UserDAO.getInstance().addUser(user);
 						return true;
 					}
 					throw new InvalidFormatInput("The username is already taken. Choose another username.");				
 				}				
-			}			
+					
 			
 				if(!Validator.validateString(name) && !Validator.validateString(lastName)) {
 					throw new InvalidFormatInput("Invalid name format.");
@@ -73,21 +75,21 @@ public class UserManager {
 		return false;
 	}
 
-	public boolean login(String username, String password) {
+	public synchronized  boolean login(String username, String password) {
 		// TODO add max_login_request
 		try {
-			synchronized (UserPojo user) {
+			
 				if (Validator.validUsername(username) && Validator.validPassword(password)) {
 					if (UserDAO.getInstance().checkUsernameAndPass(username, password)) {
-						users.get(username).setLoginStatus(true);
+						
 						users.get(username).setLastLogin(LocalDateTime.now());
 						System.out.println("Successful login");
-						UserDAO.getInstance().login(username, password);
+						
 						return true;
 					}
 					throw new InvalidFormatInput("Not existing user!");
 				}
-			}
+			
 			throw new InvalidFormatInput("Invalid username or password!");
 
 		} catch (Exception e) {
@@ -128,7 +130,7 @@ public class UserManager {
 		}
 	}
 
-	public TreeSet<Product> search(String product) {
+	/*public TreeSet<Product> search(String product) {
 		TreeSet<Product> products = new TreeSet<>((Product p1, Product p2) -> p1.getModel().compareTo(p2.getModel()));
 		try {
 			products = UserDAO.getInstance().searchProduct(product);			
@@ -138,7 +140,7 @@ public class UserManager {
 		}
 		return products;
 
-	}
+	}*/
 
 	public void removeProduct(UserPojo user, Product product) {
 		if (user.getCart().containsKey(product)) {

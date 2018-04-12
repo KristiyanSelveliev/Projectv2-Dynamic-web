@@ -5,7 +5,7 @@ import java.util.HashMap;
 import dao.ProductDAO;
 import market.Market;
 import model.Product;
-import model.User;
+
 import myExceptions.InvalidFormatInput;
 
 public class ProductManager {

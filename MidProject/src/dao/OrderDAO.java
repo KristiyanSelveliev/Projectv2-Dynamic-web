@@ -12,7 +12,7 @@ import javax.swing.plaf.metal.MetalIconFactory.FolderIcon16;
 import controller.DBManager;
 import model.Order;
 import model.Product;
-import model.User;
+
 import model.UserPojo;
 
 public class OrderDAO {

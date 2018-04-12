@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.TreeSet;
 
 import controller.DBManager;
 import model.Product;
@@ -113,23 +114,7 @@ public class UserDAO implements IUserDAO {
 	
 	
 	
-	@Override
-	public boolean login(String username, String password) throws SQLException {
-		if (this.checkUsernameAndPass(username, password)) {
-			try(PreparedStatement pStatement = connection
-					.prepareStatement("UPDATE users SET loginStatus = " + 1 + " WHERE username = " + username + " ");){
-				pStatement.executeUpdate();
-				
-				return true;
-				
-			}
-			
-			
-		}
-		return false;
-
-	}
-
+	
 	@Override
 	public void logout(String username, String password) throws SQLException {
 		try (PreparedStatement pStatement = connection
@@ -159,7 +144,7 @@ public class UserDAO implements IUserDAO {
 		// TODO shte se mahne
 
 	}
-
+/*
 	@Override
 	public TreeSet<Product> searchProduct(String product) throws SQLException {
 		TreeSet<Product> products = new TreeSet<>((Product p1, Product p2) -> p1.getModel().compareTo(p2.getModel()));
@@ -175,7 +160,7 @@ public class UserDAO implements IUserDAO {
 		return products;
 	}
 
-	
+	*/
 
 	@Override
 	public void removeProductCustomer(Product product) throws Exception {

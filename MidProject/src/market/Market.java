@@ -1,5 +1,5 @@
 package market;
-
+/*
 import java.awt.List;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -28,9 +28,13 @@ import myExceptions.InvalidFormatInput;
 import myExceptions.LoginException;
 import validator.Validator;
 
-
+*/
 public class Market {
 	
+	
+	public static final int MIN_RATING = 1;
+	public static final int MAX_RATING = 5;
+	/*
 	
         public static void main(String[] args) {
 		
@@ -97,7 +101,12 @@ public class Market {
 			instance = new Market();
 			/*generateAdmins(3);//TODO ne e neobhodimo, ima static block
 			generateCust(3);// -||-
-*/			products.put(TYPES.GSM, new HashMap());
+			
+			
+			
+			*/
+	/*
+		    products.put(TYPES.GSM, new HashMap());
 			products.put(TYPES.PC, new HashMap());
 			products.put(TYPES.TV, new HashMap());
 			
@@ -334,8 +343,14 @@ public class Market {
 		custList.addAll((Collection<? extends Customer>) xList);
 		return	custList.get(new Random().nextInt(custList.size()));
 		
-	}*/
+	}
+	
+	*/
 
+	/*
+	
+	
+	
 	public static HashSet<Admin> getAdmins() {
 		return (HashSet<Admin>) Collections.unmodifiableSet(admins);
 	}
@@ -364,7 +379,7 @@ public class Market {
 	
 	
 	
-	
+	*/
 	
 
 	
